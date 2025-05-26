@@ -67,3 +67,44 @@ fi
 # Add current user to docker group to run docker without sudo
 sudo usermod -aG docker $USER
 echo "Added current user to docker group. Please log out and log back in for the changes to take effect."
+
+# Install Google Chrome
+echo "Step 6: Installing Google Chrome..."
+if ! command -v google-chrome &> /dev/null; then
+    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+    sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+    sudo apt-get update
+    sudo apt-get install -y google-chrome-stable
+    echo "Google Chrome installed successfully"
+else
+    echo "Google Chrome is already installed, skipping installation"
+fi
+
+# Install Visual Studio Code
+echo "Step 7: Installing Visual Studio Code..."
+if ! command -v code &> /dev/null; then
+    wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+    sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+    sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+    rm -f packages.microsoft.gpg
+    sudo apt-get update
+    sudo apt-get install -y code
+    echo "Visual Studio Code installed successfully"
+else
+    echo "Visual Studio Code is already installed, skipping installation"
+fi
+
+# Install Cursor
+echo "Step 8: Installing Cursor..."
+if ! command -v cursor &> /dev/null; then
+    # Download and install Cursor
+    wget -O cursor.deb https://download.cursor.sh/linux_deb/cursor_latest_amd64.deb
+    sudo dpkg -i cursor.deb
+    sudo apt-get install -f -y
+    rm cursor.deb
+    echo "Cursor installed successfully"
+else
+    echo "Cursor is already installed, skipping installation"
+fi
+
+
