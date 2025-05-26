@@ -141,3 +141,37 @@ else
 fi
 
 echo "System configured to run continuously without sleep or lock"
+
+# Enable remote sharing
+echo "Step 11: Enabling remote sharing..."
+
+# Install required packages
+sudo apt-get update
+sudo apt-get install -y openssh-server xrdp
+
+# Configure XRDP
+sudo systemctl enable xrdp
+sudo systemctl start xrdp
+
+# Configure firewall to allow RDP connections
+sudo ufw allow 3389/tcp
+
+# Add user to xrdp group
+sudo usermod -a -G xrdp $USER
+
+# Configure XRDP to use Xorg
+sudo tee /etc/xrdp/startwm.sh << EOF
+#!/bin/sh
+if [ -r /etc/default/locale ]; then
+  . /etc/default/locale
+  export LANG LANGUAGE
+fi
+startxfce4
+EOF
+
+sudo chmod +x /etc/xrdp/startwm.sh
+
+# Restart XRDP service
+sudo systemctl restart xrdp
+
+echo "Remote sharing enabled. You can now connect using RDP on port 3389"
