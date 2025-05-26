@@ -108,3 +108,36 @@ else
 fi
 
 
+# Configure system to never sleep, lock, or log off
+echo "Step 9: Configuring system power and lock settings..."
+
+# Disable screen lock
+gsettings set org.gnome.desktop.session idle-delay 0
+gsettings set org.gnome.desktop.screensaver lock-enabled false
+gsettings set org.gnome.desktop.screensaver lock-delay 0
+
+# Disable automatic suspend
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+
+# Configure power settings
+sudo tee /etc/systemd/logind.conf << EOF
+[Login]
+HandleLidSwitch=ignore
+HandleLidSwitchExternalPower=ignore
+HandleLidSwitchDocked=ignore
+IdleAction=ignore
+EOF
+
+# Reload systemd to apply changes
+sudo systemctl restart systemd-logind
+
+# Set Ubuntu version to 22.04
+echo "Step 10: Setting Ubuntu version to 22.04..."
+if [ -f /etc/os-release ]; then
+    sudo sed -i 's/VERSION_ID=.*/VERSION_ID="22.04"/' /etc/os-release
+    echo "Ubuntu version set to 22.04"
+else
+    echo "Warning: Could not find /etc/os-release file"
+fi
+
+echo "System configured to run continuously without sleep or lock"
