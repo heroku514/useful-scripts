@@ -32,6 +32,22 @@ powershell -ExecutionPolicy Bypass -Command "& {Invoke-WebRequest -Uri 'https://
 - Administrator privileges
 - PowerShell 5.1 or later
 
+### PowerShell Version Information
+Windows 10 comes with multiple PowerShell versions:
+- **Windows PowerShell** (PowerShell 5.1) - This is the version that can run this script
+- **PowerShell Core** (PowerShell 6.0+) - Not compatible with this script
+
+To check your PowerShell version:
+```powershell
+$PSVersionTable.PSVersion
+```
+
+To run the script:
+1. Right-click on the Windows PowerShell icon
+2. Select "Run as Administrator"
+3. Navigate to the script directory
+4. Run the script
+
 ## What the Script Does
 
 1. **Auto-login Configuration**
@@ -61,6 +77,7 @@ If you encounter any issues:
 1. Ensure you're running PowerShell as Administrator
 2. Check if your execution policy allows script execution
 3. Verify your Windows username and password are correct
+4. Make sure you're using Windows PowerShell (5.1) and not PowerShell Core
 
 ## License
 
