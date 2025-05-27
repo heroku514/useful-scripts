@@ -1,3 +1,8 @@
+run this command first
+```
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
 # Windows Installation Scripts
 
 This directory contains PowerShell scripts for silently installing various applications on Windows.
