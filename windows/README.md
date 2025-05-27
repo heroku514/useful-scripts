@@ -13,12 +13,16 @@ This directory contains PowerShell scripts for silently installing various appli
 - `install-chrome.ps1` - Installs Google Chrome
 - `install-vscode.ps1` - Installs Visual Studio Code
 - `install-cursor.ps1` - Installs Cursor IDE
+- `install-docker.ps1` - Installs Docker Desktop (requires Windows 10 Pro/Enterprise/Education)
 
 ## Prerequisites
 
 - Windows operating system
 - PowerShell 5.1 or later
 - Administrator privileges
+- For Docker Desktop:
+  - Windows 10 Pro, Enterprise, or Education (64-bit)
+  - WSL 2 enabled (script will attempt to enable this)
 
 ## How to Run
 
@@ -37,6 +41,7 @@ This directory contains PowerShell scripts for silently installing various appli
    .\install-chrome.ps1
    .\install-vscode.ps1
    .\install-cursor.ps1
+   .\install-docker.ps1
    ```
 
 ## Notes
@@ -45,6 +50,7 @@ This directory contains PowerShell scripts for silently installing various appli
 - Installations are performed silently (no user interaction required)
 - Temporary installer files are automatically cleaned up after installation
 - Progress messages will be displayed during the installation process
+- Docker Desktop installation requires a system restart after completion
 
 ## Troubleshooting
 
@@ -54,3 +60,7 @@ If you encounter any issues:
 2. Check your internet connection
 3. Verify that no other installation of the same application is in progress
 4. Check Windows Event Viewer for any installation-related errors
+5. For Docker Desktop:
+   - Ensure your Windows version supports WSL 2
+   - Check if virtualization is enabled in BIOS
+   - Verify Windows features are properly enabled
