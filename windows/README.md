@@ -11,16 +11,14 @@ This PowerShell script configures a Windows 10 machine to behave like a server b
 Run this command in PowerShell as Administrator:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -Command "& {Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/configure-windows-server.ps1' -OutFile 'configure-windows-server.ps1'; .\configure-windows-server.ps1}"
+powershell -ExecutionPolicy Bypass -Command "& {Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/heuko/useful-scripts/refs/heads/main/windows/configure-windows-server.ps1' -OutFile 'configure-windows-server.ps1'; .\configure-windows-server.ps1}"
 ```
-
-Replace `YOUR_USERNAME` and `YOUR_REPO` with your actual GitHub username and repository name.
 
 ## Manual Installation
 
 1. Download the script:
    ```powershell
-   Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/configure-windows-server.ps1' -OutFile 'configure-windows-server.ps1'
+   Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/heuko/useful-scripts/refs/heads/main/windows/configure-windows-server.ps1' -OutFile 'configure-windows-server.ps1'
    ```
 
 2. Run the script as Administrator:
