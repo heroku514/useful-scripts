@@ -14,6 +14,7 @@ This directory contains PowerShell scripts for silently installing various appli
 - `install-vscode.ps1` - Installs Visual Studio Code
 - `install-cursor.ps1` - Installs Cursor IDE
 - `install-docker.ps1` - Installs Docker Desktop (requires Windows 10 Pro/Enterprise/Education)
+- `install-git.ps1` - Installs Git for Windows (64-bit)
 
 ## Prerequisites
 
@@ -42,6 +43,7 @@ This directory contains PowerShell scripts for silently installing various appli
    .\install-vscode.ps1
    .\install-cursor.ps1
    .\install-docker.ps1
+   .\install-git.ps1
    ```
 
 ## Notes
@@ -51,6 +53,7 @@ This directory contains PowerShell scripts for silently installing various appli
 - Temporary installer files are automatically cleaned up after installation
 - Progress messages will be displayed during the installation process
 - Docker Desktop installation requires a system restart after completion
+- Git installation includes automatic version verification
 
 ## Troubleshooting
 
@@ -64,3 +67,7 @@ If you encounter any issues:
    - Ensure your Windows version supports WSL 2
    - Check if virtualization is enabled in BIOS
    - Verify Windows features are properly enabled
+6. For Git:
+   - Check if the download was successful (file size verification)
+   - Verify Git installation using `git --version`
+   - Ensure no previous Git installation is in progress
