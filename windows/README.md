@@ -17,6 +17,9 @@ This directory contains PowerShell scripts for silently installing various appli
 - `install-docker.ps1` - Installs Docker Desktop (requires Windows 10 Pro/Enterprise/Education)
 - `install-git.ps1` - Installs Git for Windows (64-bit)
 
+## one line
+`Set-ExecutionPolicy Bypass -Scope Process -Force; ./install-figma.ps1; ./install-chrome.ps1; ./install-vscode.ps1; ./install-cursor.ps1; ./install-docker.ps1; ./install-git.ps1`
+
 ## Prerequisites
 
 - Windows operating system
