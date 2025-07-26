@@ -1,6 +1,7 @@
 run this command first
 ```
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ```
 
 # Windows Installation Scripts
