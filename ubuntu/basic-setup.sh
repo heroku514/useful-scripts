@@ -30,8 +30,30 @@ sudo ufw allow ssh
 
 echo "SSH server setup completed successfully!"
 
+# Install Git
+echo "Step 4: Installing Git..."
+if ! command -v git &> /dev/null; then
+    sudo apt-get update
+    sudo apt-get install -y git
+    echo "Git installed successfully"
+else
+    echo "Git is already installed, skipping installation"
+fi
+
+# Install Node.js and npm
+echo "Step 5: Installing Node.js and npm..."
+if ! command -v node &> /dev/null || ! command -v npm &> /dev/null; then
+    sudo apt-get update
+    # Install Node.js from NodeSource for latest LTS
+    curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+    echo "Node.js and npm installed successfully"
+else
+    echo "Node.js and npm are already installed, skipping installation"
+fi
+
 # Install Docker
-echo "Step 4: Installing Docker..."
+echo "Step 6: Installing Docker..."
 if ! command -v docker &> /dev/null; then
     # Add Docker's official GPG key
     sudo apt-get update
@@ -55,7 +77,7 @@ else
 fi
 
 # Install Docker Compose
-echo "Step 5: Installing Docker Compose..."
+echo "Step 7: Installing Docker Compose..."
 if ! command -v docker-compose &> /dev/null; then
     sudo apt-get update
     sudo apt-get install -y docker-compose-plugin
@@ -69,7 +91,7 @@ sudo usermod -aG docker $USER
 echo "Added current user to docker group. Please log out and log back in for the changes to take effect."
 
 # Install Google Chrome
-echo "Step 6: Installing Google Chrome..."
+echo "Step 8: Installing Google Chrome..."
 if ! command -v google-chrome &> /dev/null; then
     wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
     sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
@@ -81,7 +103,7 @@ else
 fi
 
 # Install Visual Studio Code
-echo "Step 7: Installing Visual Studio Code..."
+echo "Step 9: Installing Visual Studio Code..."
 if ! command -v code &> /dev/null; then
     wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
     sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
@@ -95,7 +117,7 @@ else
 fi
 
 # Install Cursor
-echo "Step 8: Installing Cursor..."
+echo "Step 10: Installing Cursor..."
 if ! command -v cursor &> /dev/null; then
     # Download and install Cursor
     wget -O cursor.deb https://download.cursor.sh/linux_deb/cursor_latest_amd64.deb
@@ -109,7 +131,7 @@ fi
 
 
 # Configure system to never sleep, lock, or log off
-echo "Step 9: Configuring system power and lock settings..."
+echo "Step 11: Configuring system power and lock settings..."
 
 # Disable screen lock
 gsettings set org.gnome.desktop.session idle-delay 0
@@ -132,7 +154,7 @@ EOF
 sudo systemctl restart systemd-logind
 
 # Set Ubuntu version to 22.04
-echo "Step 10: Setting Ubuntu version to 22.04..."
+echo "Step 12: Setting Ubuntu version to 22.04..."
 if [ -f /etc/os-release ]; then
     sudo sed -i 's/VERSION_ID=.*/VERSION_ID="22.04"/' /etc/os-release
     echo "Ubuntu version set to 22.04"
@@ -143,7 +165,7 @@ fi
 echo "System configured to run continuously without sleep or lock"
 
 # Enable remote sharing
-echo "Step 11: Enabling remote sharing..."
+echo "Step 13: Enabling remote sharing..."
 
 # Install required packages
 sudo apt-get update
