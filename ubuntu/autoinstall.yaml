@@ -1,0 +1,17 @@
+#cloud-config
+autoinstall:
+  version: 1
+  identity:
+    hostname: ubuntu-pc
+    username: a
+    password: "$6$rounds=4096$abc123xyz$gPpKILCJhEo9LW1lbyuGwh30J2s3dUmrD7TtPaJPWqOvM6WZb7eAPXmm1AdocB0DkI4aHw/nZgt9R4hwM2Zzv/"
+  locale: en_CA
+  keyboard:
+    layout: us
+  storage:
+    layout:
+      name: direct
+  ssh:
+    install-server: true
+  updates:
+    security: true
