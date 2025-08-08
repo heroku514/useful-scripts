@@ -13,5 +13,3 @@ autoinstall:
       name: direct
   ssh:
     install-server: true
-  updates:
-    security: true
